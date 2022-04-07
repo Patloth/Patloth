@@ -1,21 +1,41 @@
 const express = require('express');
-const logger = require('./logger')
+const movies = require('./movies')
+const films = require('./films')
 
 const router = express.Router();
 
-router.get('/user-profile/:abcd', function(req, res) {
-    console.log(req)
-    console.log(req.params.abcd)
-    res.send('dummy response')
+router.get("/movies",(req,res)=>{
+    const list=movies.movie()
+    res.send(list)
 })
 
-router.get('/test-me', function (req, res) {
-    console.log('------------------')
-    console.log(req)
-    console.log('------------------')
-    console.log('These are the request query parameters: ', req.query)
-    res.send('My first ever api!')
+router.get('/movies/:indexNumber', function (req, res) {
+         const number=req.params.indexNumber;
+         const index=movies.movieIndex(number)
+         
+         if(number>=0 && number<=3){
+            res.send(index)
+        }else{
+            res.send(" Use a valid index ")
+        }
+        
+            
 });
+
+router.get("/films",(req,res)=>{
+        const film=films.allFilms();
+        res.send(film)
+})
+router.get("/films/:filmId",(req,res)=>{
+     const index=req.params.filmId;
+    const filmInd=films.indexFlims(index);
+    if(index>=0 && index<=3){
+        res.send(filmInd)
+    }else{
+        res.send(" Use a valid index ")
+    }
+    
+})
 
 
 
