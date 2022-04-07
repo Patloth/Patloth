@@ -8,3 +8,10 @@ router.get('allcandidates', function (req, res) {
     let arr=["anu","arun","lalu","kgf","srinu","yogi"]
     res.send(arr)
 });
+/*router.get('candidates', function (req, res) {
+    console.log('------------------')
+    let arr=["anu","arun","lalu","kgf","srinu","yogi"]
+    let a=req.query.count
+    let result=arr.slice(o,a)
+    res.send(result)
+});*/
